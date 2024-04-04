@@ -1,3 +1,18 @@
+Step1: Open a new Unity 3D core project and a plane game object and also add a colorful 
+material to the plane, like green
+
+Step 2: Now create a folder named ‘Textures’ in the assets window and also download two 
+characters of your choice in the assets window along with the animations like jump and kick 
+from the Mixamo website
+
+Step 3: When we import the characters, their textures are not visible to us. So click on the 
+character in the inspector panel, go to the materials section and select/click on extract textures 
+then a popup will appear to select a folder, then select the textures folder that we created at 
+the start, named'Textures', and’ click on select folder. Once this is done, go to the textures 
+folder. You will find that all the textures regarding the characters we have chosen are being 
+extracted into this folder. Also, the same textures are visible to us in the scene window.
+
+
 Aim: How Unity handles the configuration of avatars and working with Animation Retargeting.
 
 1: Create a new folder name as Mixamo and inside that create 2 new folder named as 
