@@ -1,0 +1,61 @@
+Aim: How to do Animation transition with Blend Trees in Unity.
+
+1: Right Clock on the screen and Select Create State  From New Blend Tree.
+2: We will work with floats, We will create new floats parameter
+In Parameters tab of Animator Window, click on the ➕ plus sign and select Float
+
+3: Rename it to velocity and make transition from Idle state to Blend trees.
+ 4: select transition, on Inspector panel, under Blend Trees parameter add condition, and 
+select parameter velocity.
+5: Make transition from Blend Tree to idle.
+6: Then double click on Blend tree node.
+
+7: Select blend tree and check on inspector panel to do following
+8: Add walking animation in the field and you will see blend tree named walking 
+already connected with 1st blend tree.
+
+Similarly add run animation.
+
+Now let’s work in our code:
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class AnimationStateController : MonoBehaviour
+{
+ Animator animator;
+ float velocity = 0.0f; 
+ public float accelaration = 0.1f;
+ public float deccelaration = 0.5f;
+ int velocityHash;
+ // Start is called before the first frame update
+ void Start()
+ {
+ //set reference for animator
+ animator = GetComponent<Animator>();
+ //increase performance
+ velocityHash = Animator.StringToHash("Velocity");
+ }
+ // Update is called once per frame
+ void Update()
+ {
+ //get key input from players
+ bool forwardPressed = Input.GetKey("w");
+ bool runPressed = Input.GetKey("left shift");
+ if (forwardPressed && velocity < 1.0f)
+ {
+ velocity += Time.deltaTime * accelaration;
+ }
+ if (!forwardPressed && velocity > 0.0f)
+{
+ velocity -= Time.deltaTime * deccelaration;
+ }
+ if(!forwardPressed && velocity < 0.0f)
+ {
+ velocity = 0.0f;
+ }
+ animator.SetFloat(velocityHash, velocity);
+ }
+}
+
+
+

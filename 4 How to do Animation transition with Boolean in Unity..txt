@@ -1,0 +1,115 @@
+Aim: How to do Animation transition with Boolean in Unity.
+
+1: In the previous project pract3
+Now go to Animator ➡️Parameters ➡️ we are working with Boolean.
+
+2: Click on ➕ icon to add parameter ➡️ rename the parameter to isWalking
+
+3: Now we need to go from simply Idle to Walking.
+
+ 4: Right click on Idle animation ➡️ and click on Make Transition ➡️ select transition to 
+Walking animation ➡️ Now click on this transition go to inspector panel type StartWalking 
+➡️ uncheck Has Exit Time ➡️ Go to Settings ➡️ on Conditions section click on add ➕ select 
+parameter isWalking and make boolean value to true.
+
+5: Go to Hierarchy click on X Bot game object ➡️ click on Add Component.
+Add script component
+
+Code:
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class AnimationScriptController : MonoBehaviour
+{
+ Animator animator;
+int isWalkingHash;
+ // Start is called before the first frame update
+ void Start()
+ {
+ animator = GetComponent<Animator>();
+ isWalkingHash = Animator.StringToHash("isWalking");
+ 
+ }
+ // Update is called once per frame
+ void Update()
+ {
+ bool isWalking = animator.GetBool(isWalkingHash);
+ bool forwardPressed = Input.GetKey("w");
+ 
+ //if player presses w key
+ if (!isWalking && forwardPressed)
+ {
+ //then set the isWalking boolean to be true
+ animator.SetBool(isWalkingHash, true);
+ }
+ //if player is not pressing w key
+ if (isWalking && !forwardPressed)
+ {
+ //then set the isWalking boolean to be false
+ animator.SetBool(isWalkingHash, false);
+ }
+ }
+}
+
+
+
+ 6: Before running on game mode go to Animator panel and click on Walking animation 
+➡️ Click on Make Transition and select back to idle ➡️ select the create transition from 
+walking to idle ➡️ go to inspector panel ➡️ uncheck Has Exit Time ➡️ In condition section 
+click on ➕ list and add parameter isWalking and value as false.
+
+
+7: On key w pressed the character starts to walk from idle state and once removed from 
+w key goes back to the idle state.
+
+
+8: We will do the same thing for running animation as well and add code for the same 
+as well and check the output.
+Right click on Walking animation ➡️ select Make Transition ➡️ go to Inspector Panel and
+
+
+Addition in code for running animation.
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class AnimationScriptController : MonoBehaviour
+{
+ Animator animator;
+ int isWalkingHash;
+ int isRunningHash;
+ 
+ // Start is called before the first frame update
+ void Start()
+ {
+ animator = GetComponent<Animator>();
+ isWalkingHash = Animator.StringToHash("isWalking");
+ isRunningHash = Animator.StringToHash("isRunning");
+ 
+ }
+ // Update is called once per frame
+ void Update()
+ {
+ bool isrunning = animator.GetBool(isRunningHash);
+ bool isWalking = animator.GetBool(isWalkingHash);
+ bool forwardPressed = Input.GetKey("w");
+ bool runPressed = Input.GetKey("left shift");
+ //if player is not pressing w key
+ if (isWalking && !forwardPressed)
+ {
+ //then set the isWalking boolean to be false
+ animator.SetBool(isWalkingHash, false);
+ }
+ //if player is walking and not running and presses left shift
+ if (!isrunning && (forwardPressed && runPressed))
+ {
+ //the set the isRunning boolean to be true
+ animator.SetBool(isRunningHash, true);
+ }
+ //if player stops running and stops running or stops walking
+ if (isrunning && (!forwardPressed || !runPressed))
+ {
+ //the set the isRunning boolean to be false
+ animator.SetBool(isRunningHash, false);
+ }
+ }
+}

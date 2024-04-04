@@ -1,0 +1,67 @@
+Aim: How to animate character in Unity, import your character and an add animator
+
+1: Simply sign up on Mixamo
+2: You can explore more animation characters
+For our Practical we will go for 3 animations i.e. Idle animation, Walking Animation, and 
+Running Animation.
+Search Walking animation.
+Click on the Download. And Select Format as FBX for Unity(.Fbx)
+Select Frame per Second 60 Second.
+Select Skin as with skin
+Select KeyFrame Reduction as none.
+
+3: Create your Unity 3D Project ➡️ Create 2 folders named Animation for storing 
+Animation Controller and second folder Mixamo for storing the 3D characters we downloaded 
+➡️ Now drag and drop your downloaded file from folder to Unity 
+Do the same thing for other Animation Characters eg. idle & running animation
+
+4: Add a Plane gameObject in Scene and add idle bot on Scene Hierarchy panel
+
+5: Select the x-bot gameObject so that it’s highlighted in the inspector ➡️ Let’s navigate 
+to Add Component and type ‘Animator’ and select it.
+
+
+6: First property Controller property is used to assign an Animator Controller from our 
+Assets
+➡️ For Animator Controller ➡️ let’s create it by right-clicking inside our Animator folder of 
+the Assets tab ➡️ Create ➡️ Click on Animator Controller.
+
+
+7: Rename it with your desired name here we have given ‘x-bot controller’
+
+8: Now drag this asset into the slot next to controller in the Animator component 
+properties.
+
+9: Now double click on “x-bot controller”, Unity will open window titled Animator 
+which consists of two panes: the grid pane on the right and the layers and parameters on the 
+left
+
+10: Open up Mixamo folder in the assets ➡️ we will find our three models, let’s select 
+one of the animations out of the expanded model.
+
+
+11: Take a look at the Inspector and you’ll notice that all the options are grayed out, 
+This is because the animation is child of the Unity parent model asset
+
+12: By clicking on Edit this is how the window will appear.
+13: Instead, we are going to separate the animation from the model. To do so we will 
+duplicate the animation (This is done by selecting the animation and press command and Ctrl 
++ D on the keyboard).
+
+14: Now when we select our duplicated asset, we can modify its properties in the inspector 
+window, ➡️ Let’s duplicate all three, check the loop property from each animation and move 
+them into animation folder
+[Looping the animation will continuously repeat the animation if thats our character’s current 
+animation state]
+
+
+15: Lets get back to xbot controller ➡️ with our Idle animation selected, lets drag it into 
+the grid layer and we’ll immediately see the Idle animation state created!
+
+
+16: If we want to switch default states, we right-click on a different animation state and 
+select “Set as layer default state” (this means that this animator controller will automatically 
+use this animation when we enter play mode / game mode).
+
+
+17: Now if we press play, we will see our character performing

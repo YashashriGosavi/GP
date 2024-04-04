@@ -1,0 +1,8 @@
+Aim: Create a scene in unity.
+
+1: Unity Hub -> New Project -> Name it -> 3d Core
+2: Import the downloaded Assets. (grass texture asset)
+3: In Hierarchy tab, -> right click -> select 3D Objects Terrain.
+4: Terrain Layer will be added on scene and in Hierarchy.
+5: Click on Paint terrain from Inspector window > Select on Raise or Lower Terrain.
+6: Increase Brush Size and draw selecting shape.

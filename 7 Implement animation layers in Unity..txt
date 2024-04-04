@@ -1,0 +1,190 @@
+Implement animation layers in Unity.
+
+1:add a Plane for our character to stand on. and also matrial and green colour on plane.
+2: Download character of your choice from Mixamo. (CH24_NONPBR)
+format is FBX for unity and Pose - T Pose  
+
+3: Download Animations Idle, Fast run, Injured Idle, Injured Run without skin and add it 
+in asset folder create a folder Mixamo and import the character and animations in your mixamo 
+folder  (injured run, run and idle download)
+skin : Without skin 30
+
+Import the asset.in Maxima Folder
+
+4: Select Animation from the asset and Enable loop time & loop pose for all the 
+animations. ( select injured run animation in asset -> maxima folder and in 
+inspector right click on it and there is animation box is there and tick it)
+
+5: first Create animator  and add an Animator Controller to your character 
+[Right-click on Asset folder 
+➡️ click on Create ➡️ Animator Controller ➡️ Rename it accordingly and add it to your 
+character].
+Add Component Animator
+Drag and drop animation controller in animator.
+
+
+6. Click on Animator Window ➡️ Right click and Click on New State
+drag and drop the run and idle
+
+Idle State 👇🏻 select motion idle
+
+Run State 👇 select motion run
+
+7: Now add a transition from Idle state to Run state
+Right-click on Idle state ➡️ Click on make Transition and connect it to Run state and 
+similarly Make Transition from Run State to Idle State
+
+8: Now click on Transition from Idle state to Run state, and let the checkbox be enabled 
+for Has Exit Time [Exit time 0.97 indicates that the transition to the next state will occur when 
+the current animation has played up to 97% of its duration].
+(in run to idle)exit time 10 
+
+9: Adding animation layer for Injured animations. below base layer.
+10: In layers tab below base layer add a layer, rename this layer as Injured
+
+
+11: Click on the setting icon and enable sync, this will sync the base layer states with 
+the newly created layer Injured (check in the sync)
+
+12: Select Idle state from Injured Layer IDle and in motion add Injured Idle animation.
+
+Idle state from Injured Layer run and in motion add Injured runanimation.
+
+13: Adding UI to display the health of the player.
+right click hirrachy UI->Text -TextMesho pro 
+Import TMP Essential
+
+14: Select your character and click on Add component ➡️ add script ➡️ remane the 
+script to Health Controller
+
+15: Double click on script and add the below code to drop health of character once 
+space bar is clicked.
+Code:
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+public class HealthController : MonoBehaviour
+{
+ // Serialized field allows private variables to be exposed in the Unity Editor for easy 
+tweaking.
+ [SerializeField]
+ private TextMeshProUGUI healthText; // Reference to UI text for displaying health 
+information
+ [SerializeField]
+ private float maximumInjuredLayerWeight; // Maximum weight for the "Injured" 
+animation layer
+ private float maximumHealth = 100; // Maximum health value
+ private float currentHealth; // Current health value
+ private Animator animator; // Reference to the Animator component for animation control
+ private int injuredLayerIndex; // Index of the "Injured" animation layer
+ private float layerWeightVelocity; // Velocity for smooth animation transitions
+ // Start is called before the first frame update
+ void Start()
+ {
+ // Initialize current health to maximum health
+ currentHealth = maximumHealth;
+ // Get reference to the Animator component attached to this game object
+ animator = GetComponent<Animator>();
+ // Get the index of the "Injured" animation layer in the Animator
+ injuredLayerIndex = animator.GetLayerIndex("Injured");
+ }
+ // Update is called once per frame
+ void Update()
+ {
+ // Check if the spacebar is pressed
+ if (Input.GetKeyDown(KeyCode.Space))
+ {
+ // Reduce current health by 10% of maximum health
+ currentHealth -= maximumHealth / 10;
+ }
+// Ensure current health doesn't go below 0
+ if (currentHealth < 0)
+ {
+ currentHealth = maximumHealth; // Reset health to maximum if it's below 0
+ }
+ // Calculate health percentage
+ float healthPercentage = currentHealth / maximumHealth;
+ // Update UI text to display health percentage
+ healthText.text = $"Health: {healthPercentage * 100}%";
+ // Get the current weight of the "Injured" animation layer
+ float currentInjuredLayerWeight = animator.GetLayerWeight(injuredLayerIndex);
+ // Calculate the target weight based on health percentage and maximum injured layer 
+weight
+ float targetInjuredLayerWeight = (1 - healthPercentage) * 
+maximumInjuredLayerWeight;
+ // Smoothly transition the weight of the "Injured" animation layer
+ animator.SetLayerWeight(
+ injuredLayerIndex,
+ Mathf.SmoothDamp(
+ currentInjuredLayerWeight,
+ targetInjuredLayerWeight,
+ ref layerWeightVelocity,
+ 0.2f // Smoothing duration
+ ) 
+ );
+ }
+}
+
+
+
+
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class HealthController : MonoBehaviour
+{
+    [SerializeField]
+    private TextMeshProUGUI healthText;
+    [SerializeField]
+    private float maximumInjuredLayerWeight; 
+    private float maximumHealth = 100; 
+    private float currentHealth; 
+    private Animator animator; 
+    private int injuredLayerIndex; 
+    private float layerWeightVelocity; 
+
+void Start()
+{
+
+currentHealth = maximumHealth;
+
+animator = GetComponent<Animator>();
+
+injuredLayerIndex = animator.GetLayerIndex("Injured");
+}
+
+void Update()
+{
+
+if (Input.GetKeyDown(KeyCode.Space))
+{
+
+currentHealth -= maximumHealth / 10;
+}
+
+if (currentHealth < 0)
+{
+currentHealth = maximumHealth; 
+}
+
+float healthPercentage = currentHealth / maximumHealth;
+healthText.text = $"Health: {healthPercentage * 100}%";
+
+float currentInjuredLayerWeight = animator.GetLayerWeight(injuredLayerIndex);
+
+float targetInjuredLayerWeight = (1 - healthPercentage) * maximumInjuredLayerWeight;
+
+animator.SetLayerWeight(
+injuredLayerIndex,
+Mathf.SmoothDamp(
+currentInjuredLayerWeight,
+targetInjuredLayerWeight,
+ref layerWeightVelocity,
+0.2f 
+)
+);
+}
+}

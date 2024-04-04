@@ -1,0 +1,45 @@
+Aim: How Unity handles the configuration of avatars and working with Animation Retargeting.
+
+1: Create a new folder name as Mixamo and inside that create 2 new folder named as 
+Characters and Animations
+2: Right click on Hierarchy → click on 3D object → click on plane
+Now you will have a plane like this.
+
+3: Go to mixamo website and download any 2 characters and 1 animation.
+
+Make sure you use following setting to download characters
+Now go to animations and download 1 animation for any 1 of character.
+Make sure you use following setting to download animations
+
+4: Once everything is downloaded open character folder which we have created and 
+drag and drop the character files in it.
+Once done go to animations folder and drag and drop the downloaded animation.
+(Note: if textures are not visible on your character, then follow step 6 from practical 3).
+
+5: Now Drag and Drop both of your character into scene and place them on plane
+
+6: Now go to animations folder and right click → click on create → click on animation 
+controller.
+
+7: Now go to hierarchy and select any one character → go to inspector and add 
+animator component → drag and drop the animation controller which we created into 
+controller field.
+8: Go to animator tab and right click → click on create state → click on empty.
+
+9: Now select the state and go to inspector → drag and drop the animation into motion 
+field.
+
+10: Now run the project and you can see 1 character is moving.
+11: Now go to Characters folder and select the 2nd character(which was not moving 
+when we run the project) → go to inspector → click on rig → change animation type from 
+Generic to humanoid → click on apply.
+
+12: Now go to animations folders and select the animation → go to inspector → click 
+on rig → change animation type from Generic to Humanoid 
+
+13: Go to Hierarchy → select the 1st character → and add the avatar which was create 
+during step 12.
+
+14: Go to Hierarchy → select the 2
+nd character → and add the avatar which was create 
+during step 11 and also add the animation controller which was created during step 6.

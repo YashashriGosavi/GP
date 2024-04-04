@@ -1,0 +1,124 @@
+Aim: Implement XR simple Intractable in Unity using XR Interaction Toolkit.
+
+1: Go to unity hub->Click on the New Project -> Click on the 3D and give the projectname.
+
+2: Go to the Edit Option click on the project setting
+
+3: Go to last option XR Plugin Management and click on Install.
+
+4: Click on the XR Plug-in Management and check the box Open XR.
+This will take little time and once done
+
+5: You will be shown a warning dialogue box this is to implement all the preferences to 
+your project in effect by restarting Unity ->Here click on Yes and your Unity will restart.
+(OpenXR check)
+
+6: Once Unity restarts ⬇️ screen will be present, for the first issue click on finish.
+7: While for the second one, Click on edit, and the below dialogue box will appear 
+
+8: In above dialogue box screen click on the + sign to add Interaction Profiles.
+Oculus Touch controlleer profile
+vavle Index Controller Profile
+HTC Vive Controller profile
+Microsoft Motion Controller Profile
+
+9: For Adding XR Interactable Toolkit
+Go to Window ➡️Click on Package Manager ➡
+
+10: In the ⬇️ screen click on Package: In project ➡️ select Unity Registry
+11: Click on ➕ icon and click on Add package by name.
+Type com.unity.xr.interaction.toolkit and hit enter (this way will help you install latest 
+version of XR interaction Toolkit).
+
+12: After installation is, done ⬇️ screen will appear click on Samples.
+
+13: Click on Import for Starter Asset and XR Device Simulato
+
+14: Right Click on the Hierarchy area and click on 3D Object ➡️ Click on Plane.
+
+15: For adding color to the plane we are using Material for that to keep things simple 
+and structured, we will create folder called Material in our asset
+So to do that right click on Assets area ➡️ click on Create ➡️ Click on Folder ➡️ rename your 
+New Folder to Material.
+
+16: Click on Material Folder ➡️Inside Material folder ➡️ right click ➡️click on Create 
+➡️Click on Material.
+
+17: Rename the name of material with your desired name, On Inspector panel click on 
+Albedo to change color to desired one
+
+18: Once done click on to plane game object➡️on inspector panel click on 
+material➡️click on dropdown and select material that you created.
+
+19: Lets add our XR origin before adding more game object on scene Right click on 
+Hierarchy panel➡️Click on XR➡️Click on XR Origin (VR)⬇
+
+20: Delete Main Camera above Directional light➡️Right click on Main Camera➡️Click 
+on Delete
+(Since we already have Main camera in XR origin having both camera’s would clash and the
+Simulation won’t provide proper result)
+
+21: When you get inside XR Origin folder➡️Camera Offset➡️Left Controller the 
+Inspector panel shows controller option however for left controller it should show XRI Left 
+but here it doesn’t show the same thus for this lets make some settings so that Left and Right 
+controllers have proper attribute values assigned to it.
+
+ 22: First delete XR Origin from Hierarchy panel➡️Go inside Samples folder➡️XR 
+Interaction Toolkit➡️2.5.2➡️Starter Assets➡️Presents.
+
+23: Click on⬇️marked presets➡️click on Add to ActionBasedController do same job for 
+rest of the marked presets.
+
+24: Once added for marked Presets Go to Edit➡️Project Settings➡️Click on Presets 
+manager
+
+25: As you can see fields are blank to the left of Preset XRI Default Right Controller 
+and XRI Default Left Controller➡️In this field type manually right and left for the respective 
+controller.⬇️and close this dialogue box
+
+26: Now again add XR Origin (VR) as in the earlier step [Right click on Hierarchy 
+panel → click on XR → XR Origin (VR)]
+Now go to left controller and check if Inspector panel appears same as that of below screen⬇️.
+
+27: Let us add our XR Device simulator as well For this go to Assets > Samples > XR 
+Interaction Toolkit > 2.5.2 > XR Device Simulator > Click on XR Device Simulator > Drag 
+and drop this prefab to Hierarchy Panel.
+
+28: To check if the simulator is working click on Game➡️and hit play button
+29: Let’s add 3 cube game object in our scene
+cube1 -> Capsule  cube2 -> sphere  cube3 -> cylinder
+And this is how entire scene will look like⬇️
+
+30: Go to Capsule gameObject ➡️ Click on Add Component ➡️ Click on XR Simple 
+Interactable
+31: Then Click on Interactable events for adding color to cube once hovered by 
+simulator.
+32: Since we need on hover will go for Hover Entered event on the list ➡️ then click on 
+➕ icon to add functionality.
+
+33: Drag and drop your Capsule gameObject on None(Object) [Basically it is asking to 
+add a gameObject on which this functionality should happen]
+
+34: Click on No Function for adding Red material ➡️ click on Mesh Renderer ➡️ then 
+click on Material Material and below dialog box will pop up ➡️here select your created 
+material.
+
+35: Let’s test this in game mode
+36: We will go for Hover Exited event ➡️ click on ➕ icon ➡️ drag and drop buttoncube 
+gameObject ➡️ select MeshRenderer from Functionality ➡️ click on Material material ➡️ then 
+add material White.
+
+37: Now once again check in game mode
+38: Let us add one more interactability i.e. the sphere that you can see on the other Cube 
+should not be visible and should be visible only when our VR rays hover on capsule.
+Let us work on this
+Go to Sphere gameObject ➡
+
+39: Click on capsule➡️ go to Inspector Panel ➡️ On Hover Entered event we will add 
+one more functionalit.
+
+ 40: On above screen we will add sphere gameObject ➡️ will set functionality to 
+GameObject ➡️ SetActive (bool) ➡️ and then enable checkbox.
+41: Let us test it in game mode.
+
+
