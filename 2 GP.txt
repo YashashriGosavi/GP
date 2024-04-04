@@ -77,7 +77,7 @@ and XRI Default Left Controller➡️In this field type manually right and left 
 controller.⬇️and close this dialogue box
 
 26: Now again add XR Origin (VR) as in the earlier step [Right click on Hierarchy 
-panel → click on XR → XR Origin (VR)]
+panel → click on XR → XR Origin (VR)]  select left container
 Now go to left controller and check if Inspector panel appears same as that of below screen⬇️.
 
 27: Let us add our XR Device simulator as well For this go to Assets > Samples > XR 
